@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TimeTable.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LoadStrNine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9:00-10:00</Value>
+    </Setting>
+    <Setting Name="LoadStrTen" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10:00-11:00</Value>
+    </Setting>
+    <Setting Name="LoadStrEle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">11:00-12:00</Value>
+    </Setting>
+    <Setting Name="LoadStrTwe" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">12:00-13:00</Value>
+    </Setting>
+    <Setting Name="LoadStrThi" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">13:00-14:00</Value>
+    </Setting>
+    <Setting Name="LoadStrFou" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">14:00-15:00</Value>
+    </Setting>
+    <Setting Name="LoadStrFif" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">15:00-16:00</Value>
+    </Setting>
+    <Setting Name="LoadStrSix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">16:00-17:00</Value>
+    </Setting>
+    <Setting Name="LoadStrSev" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">17:00-18:00</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
