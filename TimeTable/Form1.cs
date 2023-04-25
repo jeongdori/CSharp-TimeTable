@@ -1,9 +1,14 @@
 using System;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing.Printing;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Excel = Microsoft.Office.Interop.Excel;
+using ExcelClass = TimeTable.DataGridViewExcel;
+
 
 namespace TimeTable
 {
@@ -69,49 +74,48 @@ namespace TimeTable
 
                 using (var form = new Form())
                 {
-                    Point clickPoint = this.PointToClient(Cursor.Position);
+
+                    var newValue = new System.Windows.Forms.TextBox() { Text = message };
+                    var okButton = new System.Windows.Forms.Button() { Text = "확인" };
+                    var cancelButton = new System.Windows.Forms.Button() { Text = "취소" };
+
+                    // 위치와 크기
+                    System.Drawing.Point clickPoint = this.PointToClient(Cursor.Position);
                     form.StartPosition = FormStartPosition.Manual;
-                    form.Location = new Point(clickPoint.X + 50, clickPoint.Y + 50);
-
-                    var newValue = new TextBox() { Text = message };
-                    var okButton = new Button() { Text = "확인" };
-                    var cancelButton = new Button() { Text = "취소" };
-
-                    // 각 컨트롤의 위치와 크기를 설정합니다.
-                    newValue.Location = new Point(10, 10);
+                    form.Location = new System.Drawing.Point(clickPoint.X + 50, clickPoint.Y + 50);
+                    newValue.Location = new System.Drawing.Point(10, 10);
                     newValue.Size = new Size(200, 20);
-                    okButton.Location = new Point(10, 70);
+                    okButton.Location = new System.Drawing.Point(10, 70);
                     okButton.Size = new Size(75, 23);
-                    cancelButton.Location = new Point(95, 70);
+                    cancelButton.Location = new System.Drawing.Point(95, 70);
                     cancelButton.Size = new Size(75, 23);
                     form.Size = new Size(300, 150);
 
 
                     okButton.Click += (s, ev) =>
                     {
-                        DataTable dataTable = dataSet.Tables[0];
+                        System.Data.DataTable dataTable = dataSet.Tables[0];
                         DataRow row = dataTable.Rows[e.RowIndex];
                         row[e.ColumnIndex] = newValue.Text;
 
                         dataSet.AcceptChanges();
 
                         dataSet.WriteXml("TimeTableData.xml");
-                        // 폼을 닫습니다.
+
                         form.Close();
                     };
 
                     cancelButton.Click += (s, ev) =>
                     {
-                        // 폼을 닫습니다.
                         form.Close();
                     };
 
-                    // 폼에 컨트롤을 추가합니다.
+
                     form.Controls.Add(newValue);
                     form.Controls.Add(okButton);
                     form.Controls.Add(cancelButton);
 
-                    // 폼을 표시합니다.
+
                     form.ShowDialog();
                 }
 
@@ -133,18 +137,30 @@ namespace TimeTable
 
         private void ExcelButtonClick(object sender, EventArgs e)
         {
-            ExcelClass excel = new ExcelClass();
-            excel.ExportToExcel(dataGridView1);
+            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+            excelClass.ExportToExcelFor();
+
+
         }
 
         private void PrintButtonClick(object sender, EventArgs e)
         {
+            DataGridViewPrinter printer = new DataGridViewPrinter(dataGridView1);
+            printer.Print();
+
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ExcelView_Click(object sender, EventArgs e)
         {
+            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+            excelClass.ExcelView();
+        }
 
+        private void ExcelImport_Click(object sender, EventArgs e)
+        {
+            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+            excelClass.ExcelImport();
         }
     }
 }

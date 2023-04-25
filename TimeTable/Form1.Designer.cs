@@ -32,7 +32,9 @@ namespace TimeTable
         {
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            ExcelButton = new Button();
+            ExcelImportButton = new Button();
+            ExcelViewButton = new Button();
+            ExportToExcelButton = new Button();
             PrintButton = new Button();
             dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
@@ -41,7 +43,9 @@ namespace TimeTable
             // 
             // panel1
             // 
-            panel1.Controls.Add(ExcelButton);
+            panel1.Controls.Add(ExcelImportButton);
+            panel1.Controls.Add(ExcelViewButton);
+            panel1.Controls.Add(ExportToExcelButton);
             panel1.Controls.Add(PrintButton);
             panel1.Controls.Add(dataGridView1);
             panel1.Dock = DockStyle.Fill;
@@ -50,21 +54,43 @@ namespace TimeTable
             panel1.Size = new Size(556, 633);
             panel1.TabIndex = 1;
             // 
-            // ExcelButton
+            // ExcelImportButton
             // 
-            ExcelButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExcelButton.Location = new Point(257, 566);
-            ExcelButton.Name = "ExcelButton";
-            ExcelButton.Size = new Size(120, 43);
-            ExcelButton.TabIndex = 2;
-            ExcelButton.Text = "엑셀저장";
-            ExcelButton.UseVisualStyleBackColor = true;
-            ExcelButton.Click += ExcelButtonClick;
+            ExcelImportButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExcelImportButton.Location = new Point(25, 566);
+            ExcelImportButton.Name = "ExcelImportButton";
+            ExcelImportButton.Size = new Size(120, 43);
+            ExcelImportButton.TabIndex = 3;
+            ExcelImportButton.Text = "불러오기";
+            ExcelImportButton.UseVisualStyleBackColor = true;
+            ExcelImportButton.Click += ExcelImport_Click;
+            // 
+            // ExcelViewButton
+            // 
+            ExcelViewButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExcelViewButton.Location = new Point(151, 566);
+            ExcelViewButton.Name = "ExcelViewButton";
+            ExcelViewButton.Size = new Size(120, 43);
+            ExcelViewButton.TabIndex = 2;
+            ExcelViewButton.Text = "엑셀 보기";
+            ExcelViewButton.UseVisualStyleBackColor = true;
+            ExcelViewButton.Click += ExcelView_Click;
+            // 
+            // ExportToExcelButton
+            // 
+            ExportToExcelButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExportToExcelButton.Location = new Point(286, 566);
+            ExportToExcelButton.Name = "ExportToExcelButton";
+            ExportToExcelButton.Size = new Size(120, 43);
+            ExportToExcelButton.TabIndex = 2;
+            ExportToExcelButton.Text = "엑셀저장";
+            ExportToExcelButton.UseVisualStyleBackColor = true;
+            ExportToExcelButton.Click += ExcelButtonClick;
             // 
             // PrintButton
             // 
             PrintButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PrintButton.Location = new Point(405, 566);
+            PrintButton.Location = new Point(412, 566);
             PrintButton.Name = "PrintButton";
             PrintButton.Size = new Size(120, 43);
             PrintButton.TabIndex = 1;
@@ -96,7 +122,6 @@ namespace TimeTable
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dataGridView1.Size = new Size(556, 633);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.CellDoubleClick += CellDoubleClick;
             // 
             // Form1
@@ -119,6 +144,8 @@ namespace TimeTable
         private DataGridView dataGridView1;
         private Panel panel1;
         private Button PrintButton;
-        private Button ExcelButton;
+        private Button ExportToExcelButton;
+        private Button ExcelViewButton;
+        private Button ExcelImportButton;
     }
 }
