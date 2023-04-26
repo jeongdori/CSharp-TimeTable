@@ -49,17 +49,16 @@ namespace TimeTable
             panel1.Controls.Add(ExcelViewButton);
             panel1.Controls.Add(ExportToExcelButton);
             panel1.Controls.Add(PrintButton);
-            panel1.Controls.Add(dataGridView1);
-            panel1.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Right;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(556, 633);
+            panel1.Size = new Size(100, 633);
             panel1.TabIndex = 1;
             // 
             // ExcelSave
             // 
             ExcelSave.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExcelSave.Location = new Point(129, 566);
+            ExcelSave.Location = new Point(10, 88);
             ExcelSave.Name = "ExcelSave";
             ExcelSave.Size = new Size(80, 43);
             ExcelSave.TabIndex = 4;
@@ -70,7 +69,7 @@ namespace TimeTable
             // ExcelImportButton
             // 
             ExcelImportButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExcelImportButton.Location = new Point(25, 566);
+            ExcelImportButton.Location = new Point(10, 22);
             ExcelImportButton.Name = "ExcelImportButton";
             ExcelImportButton.Size = new Size(80, 43);
             ExcelImportButton.TabIndex = 3;
@@ -81,7 +80,7 @@ namespace TimeTable
             // ExcelViewButton
             // 
             ExcelViewButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExcelViewButton.Location = new Point(341, 566);
+            ExcelViewButton.Location = new Point(10, 233);
             ExcelViewButton.Name = "ExcelViewButton";
             ExcelViewButton.Size = new Size(80, 43);
             ExcelViewButton.TabIndex = 2;
@@ -92,7 +91,7 @@ namespace TimeTable
             // ExportToExcelButton
             // 
             ExportToExcelButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExportToExcelButton.Location = new Point(235, 566);
+            ExportToExcelButton.Location = new Point(10, 160);
             ExportToExcelButton.Name = "ExportToExcelButton";
             ExportToExcelButton.Size = new Size(80, 43);
             ExportToExcelButton.TabIndex = 2;
@@ -103,7 +102,7 @@ namespace TimeTable
             // PrintButton
             // 
             PrintButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PrintButton.Location = new Point(447, 566);
+            PrintButton.Location = new Point(10, 306);
             PrintButton.Name = "PrintButton";
             PrintButton.Size = new Size(80, 43);
             PrintButton.TabIndex = 1;
@@ -133,7 +132,7 @@ namespace TimeTable
             dataGridView1.RowTemplate.Height = 60;
             dataGridView1.RowTemplate.Resizable = DataGridViewTriState.False;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.Size = new Size(556, 633);
+            dataGridView1.Size = new Size(0, 633);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += CellDoubleClick;
             // 
@@ -143,6 +142,7 @@ namespace TimeTable
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(556, 633);
+            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";

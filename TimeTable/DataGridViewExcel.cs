@@ -19,7 +19,6 @@ namespace TimeTable
 
         private DataGridView dataGridView1;
 
-        public DataGridViewExcel( ) { }
         public DataGridViewExcel(DataGridView dataGridView1)
         {
             this.dataGridView1 = dataGridView1;
