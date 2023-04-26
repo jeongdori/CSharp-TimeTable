@@ -1,6 +1,6 @@
 # CSharp-TimeTable
 
-c# datagridview로 엑셀파일을 출력하는 프로그램
+c# winform datagridview로 엑셀파일을 출력하는 프로그램
 
 # 기능
 
