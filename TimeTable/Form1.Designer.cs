@@ -30,8 +30,9 @@ namespace TimeTable
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            ExcelSave = new Button();
             ExcelImportButton = new Button();
             ExcelViewButton = new Button();
             ExportToExcelButton = new Button();
@@ -43,6 +44,7 @@ namespace TimeTable
             // 
             // panel1
             // 
+            panel1.Controls.Add(ExcelSave);
             panel1.Controls.Add(ExcelImportButton);
             panel1.Controls.Add(ExcelViewButton);
             panel1.Controls.Add(ExportToExcelButton);
@@ -54,12 +56,23 @@ namespace TimeTable
             panel1.Size = new Size(556, 633);
             panel1.TabIndex = 1;
             // 
+            // ExcelSave
+            // 
+            ExcelSave.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExcelSave.Location = new Point(129, 566);
+            ExcelSave.Name = "ExcelSave";
+            ExcelSave.Size = new Size(80, 43);
+            ExcelSave.TabIndex = 4;
+            ExcelSave.Text = "저장";
+            ExcelSave.UseVisualStyleBackColor = true;
+            ExcelSave.Click += ExcelSaveButtonClick;
+            // 
             // ExcelImportButton
             // 
-            ExcelImportButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExcelImportButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
             ExcelImportButton.Location = new Point(25, 566);
             ExcelImportButton.Name = "ExcelImportButton";
-            ExcelImportButton.Size = new Size(120, 43);
+            ExcelImportButton.Size = new Size(80, 43);
             ExcelImportButton.TabIndex = 3;
             ExcelImportButton.Text = "불러오기";
             ExcelImportButton.UseVisualStyleBackColor = true;
@@ -67,10 +80,10 @@ namespace TimeTable
             // 
             // ExcelViewButton
             // 
-            ExcelViewButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExcelViewButton.Location = new Point(151, 566);
+            ExcelViewButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExcelViewButton.Location = new Point(341, 566);
             ExcelViewButton.Name = "ExcelViewButton";
-            ExcelViewButton.Size = new Size(120, 43);
+            ExcelViewButton.Size = new Size(80, 43);
             ExcelViewButton.TabIndex = 2;
             ExcelViewButton.Text = "엑셀 보기";
             ExcelViewButton.UseVisualStyleBackColor = true;
@@ -78,21 +91,21 @@ namespace TimeTable
             // 
             // ExportToExcelButton
             // 
-            ExportToExcelButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ExportToExcelButton.Location = new Point(286, 566);
+            ExportToExcelButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ExportToExcelButton.Location = new Point(235, 566);
             ExportToExcelButton.Name = "ExportToExcelButton";
-            ExportToExcelButton.Size = new Size(120, 43);
+            ExportToExcelButton.Size = new Size(80, 43);
             ExportToExcelButton.TabIndex = 2;
-            ExportToExcelButton.Text = "엑셀저장";
+            ExportToExcelButton.Text = "새로저장";
             ExportToExcelButton.UseVisualStyleBackColor = true;
-            ExportToExcelButton.Click += ExcelButtonClick;
+            ExportToExcelButton.Click += ExcelSaveAsButtonClick;
             // 
             // PrintButton
             // 
-            PrintButton.Font = new Font("맑은 고딕", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            PrintButton.Location = new Point(412, 566);
+            PrintButton.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            PrintButton.Location = new Point(447, 566);
             PrintButton.Name = "PrintButton";
-            PrintButton.Size = new Size(120, 43);
+            PrintButton.Size = new Size(80, 43);
             PrintButton.TabIndex = 1;
             PrintButton.Text = "인쇄";
             PrintButton.UseVisualStyleBackColor = true;
@@ -105,14 +118,14 @@ namespace TimeTable
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
@@ -133,7 +146,6 @@ namespace TimeTable
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";
-            Load += Form_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -147,5 +159,6 @@ namespace TimeTable
         private Button ExportToExcelButton;
         private Button ExcelViewButton;
         private Button ExcelImportButton;
+        private Button ExcelSave;
     }
 }

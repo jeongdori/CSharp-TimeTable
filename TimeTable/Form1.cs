@@ -1,3 +1,4 @@
+using ExcelDataReader;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -14,48 +15,12 @@ namespace TimeTable
 {
     public partial class Form1 : Form
     {
-        DataSet dataSet = new DataSet();
+        //DataSet dataSet = new DataSet();
+        string[] fileimpor;
+
         public Form1()
         {
             InitializeComponent();
-
-        }
-
-
-        public void Form_Load(object sender, EventArgs e)
-        {
-
-
-            if (File.Exists("TimeTableData.xml"))
-            {
-                dataSet.ReadXml("TimeTableData.xml");
-                dataGridView1.DataSource = dataSet.Tables[0];
-            }
-            else
-            {
-                List<Schedule> schedules = new List<Schedule>();
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrNine, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrTen, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrEle, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrTwe, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrThi, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrFou, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrFif, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrSix, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-                schedules.Add(new Schedule { Time = Properties.Settings.Default.LoadStrSev, Mon = "", Tue = "", Wed = "", Thu = "", Fri = "" });
-
-                var serializer = new XmlSerializer(typeof(List<Schedule>));
-
-                var writer = new StreamWriter("TimeTableData.xml");
-                serializer.Serialize(writer, schedules);
-                writer.Close();
-
-                dataSet.ReadXml("TimeTableData.xml");
-                dataGridView1.DataSource = dataSet.Tables[0];
-
-            }
-
-
 
         }
 
@@ -94,13 +59,13 @@ namespace TimeTable
 
                     okButton.Click += (s, ev) =>
                     {
-                        System.Data.DataTable dataTable = dataSet.Tables[0];
+                        System.Data.DataTable dataTable = (DataTable)dataGridView1.DataSource;
                         DataRow row = dataTable.Rows[e.RowIndex];
                         row[e.ColumnIndex] = newValue.Text;
 
-                        dataSet.AcceptChanges();
+                        //dataSet.AcceptChanges();
 
-                        dataSet.WriteXml("TimeTableData.xml");
+                        //dataSet.WriteXml("TimeTableData.xml");
 
                         form.Close();
                     };
@@ -119,48 +84,49 @@ namespace TimeTable
                     form.ShowDialog();
                 }
 
-                //string? newValue = Microsoft.VisualBasic.Interaction.InputBox("강의명, 교수명 등을 입력하세요", "강의정보", message);
-
-                //DataTable dataTable = dataSet.Tables[0];
-                //DataRow row = dataTable.Rows[e.RowIndex];
-                //row[e.ColumnIndex] = newValue;
-
-                //dataSet.AcceptChanges();
-
-                //dataSet.WriteXml("TimeTableData.xml");
-
-
-                //clickedCell.Value = newValue;
             }
         }
 
 
-        private void ExcelButtonClick(object sender, EventArgs e)
+
+
+        //엑셀파일 로드
+        private void ExcelImport_Click(object sender, EventArgs e)
         {
             DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
-            excelClass.ExportToExcelFor();
-
-
+            fileimpor = excelClass.ExcelImport();
         }
 
-        private void PrintButtonClick(object sender, EventArgs e)
+        //저장
+        private void ExcelSaveButtonClick(object sender, EventArgs e)
         {
-            DataGridViewPrinter printer = new DataGridViewPrinter(dataGridView1);
-            printer.Print();
+            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+            excelClass.SaveExcelFile(fileimpor[0]);
+        }
 
+        //새로 저장
+        private void ExcelSaveAsButtonClick(object sender, EventArgs e)
+        {
+            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+            excelClass.ExportToExcelFor(fileimpor[1]);
 
         }
 
+        //엑셀로 보기
         private void ExcelView_Click(object sender, EventArgs e)
         {
             DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
             excelClass.ExcelView();
         }
 
-        private void ExcelImport_Click(object sender, EventArgs e)
+        //인쇄
+        private void PrintButtonClick(object sender, EventArgs e)
         {
-            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
-            excelClass.ExcelImport();
+            DataGridViewPrinter printer = new DataGridViewPrinter(dataGridView1);
+            printer.Print();
+
         }
+
+
     }
 }
