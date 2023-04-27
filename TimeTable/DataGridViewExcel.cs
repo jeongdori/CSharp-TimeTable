@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using ExcelDataReader;
-using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using System.Windows.Forms.Design;
@@ -84,7 +83,9 @@ namespace TimeTable
             {
                 for (int col = 0; col < dataGridView1.Columns.Count; col++)
                 {
+
                     worksheet.Cells[row + 2, col + 1] = dataGridView1.Rows[row].Cells[col].Value.ToString();
+
                 }
             }
 
@@ -106,8 +107,7 @@ namespace TimeTable
         //엑셀 파일 내보내기 반복문
         public void ExportToExcelFor(string FileName)
         {
-            SaveFileDialog SaveFile = saveFileDialog();
-            SaveFile.FileName = FileName;
+            SaveFileDialog SaveFile = saveFileDialog(); 
 
             if (SaveFile.ShowDialog() == DialogResult.OK)
             {
@@ -128,7 +128,7 @@ namespace TimeTable
                     }
                 }
 
-                    workbook.SaveAs(SaveFile.FileName, Excel.XlFileFormat.xlOpenXMLWorkbook);
+                    workbook.SaveAs(FileName, Excel.XlFileFormat.xlOpenXMLWorkbook);
                     MessageBox.Show("저장되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     excelApp.Quit();
             }

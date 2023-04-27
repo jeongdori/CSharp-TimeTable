@@ -32,6 +32,7 @@ namespace TimeTable
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            DBConn = new Button();
             ExcelSave = new Button();
             ExcelImportButton = new Button();
             ExcelViewButton = new Button();
@@ -44,16 +45,28 @@ namespace TimeTable
             // 
             // panel1
             // 
+            panel1.Controls.Add(DBConn);
             panel1.Controls.Add(ExcelSave);
             panel1.Controls.Add(ExcelImportButton);
             panel1.Controls.Add(ExcelViewButton);
             panel1.Controls.Add(ExportToExcelButton);
             panel1.Controls.Add(PrintButton);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(456, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(100, 633);
             panel1.TabIndex = 1;
+            // 
+            // DBConn
+            // 
+            DBConn.Font = new Font("맑은 고딕", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DBConn.Location = new Point(10, 372);
+            DBConn.Name = "DBConn";
+            DBConn.Size = new Size(80, 43);
+            DBConn.TabIndex = 2;
+            DBConn.Text = "DB연결";
+            DBConn.UseVisualStyleBackColor = true;
+            DBConn.Click += DBConnClick;
             // 
             // ExcelSave
             // 
@@ -132,7 +145,7 @@ namespace TimeTable
             dataGridView1.RowTemplate.Height = 60;
             dataGridView1.RowTemplate.Resizable = DataGridViewTriState.False;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.Size = new Size(0, 633);
+            dataGridView1.Size = new Size(456, 633);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += CellDoubleClick;
             // 
@@ -160,5 +173,6 @@ namespace TimeTable
         private Button ExcelViewButton;
         private Button ExcelImportButton;
         private Button ExcelSave;
+        private Button DBConn;
     }
 }
