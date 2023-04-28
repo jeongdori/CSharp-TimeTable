@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using MySqlX.XDevAPI.Relational;
+using System.Windows.Forms;
 
 namespace TimeTable
 {
@@ -32,6 +33,7 @@ namespace TimeTable
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            BackColorChange = new Button();
             DBConn = new Button();
             ExcelSave = new Button();
             ExcelImportButton = new Button();
@@ -39,12 +41,14 @@ namespace TimeTable
             ExportToExcelButton = new Button();
             PrintButton = new Button();
             dataGridView1 = new DataGridView();
+            imgCol = new DataGridViewImageColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(BackColorChange);
             panel1.Controls.Add(DBConn);
             panel1.Controls.Add(ExcelSave);
             panel1.Controls.Add(ExcelImportButton);
@@ -56,6 +60,16 @@ namespace TimeTable
             panel1.Name = "panel1";
             panel1.Size = new Size(100, 633);
             panel1.TabIndex = 1;
+            // 
+            // BackColorChange
+            // 
+            BackColorChange.Location = new Point(10, 441);
+            BackColorChange.Name = "BackColorChange";
+            BackColorChange.Size = new Size(80, 43);
+            BackColorChange.TabIndex = 5;
+            BackColorChange.Text = "배경색";
+            BackColorChange.UseVisualStyleBackColor = true;
+            BackColorChange.Click += BackColorChangeClick;
             // 
             // DBConn
             // 
@@ -130,14 +144,7 @@ namespace TimeTable
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { imgCol });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
@@ -148,6 +155,21 @@ namespace TimeTable
             dataGridView1.Size = new Size(456, 633);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += CellDoubleClick;
+            // 
+            // imgCol
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.Transparent;
+            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            imgCol.DefaultCellStyle = dataGridViewCellStyle1;
+            imgCol.HeaderText = "Image Column";
+            imgCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            imgCol.Name = "imgCol";
             // 
             // Form1
             // 
@@ -174,5 +196,7 @@ namespace TimeTable
         private Button ExcelImportButton;
         private Button ExcelSave;
         private Button DBConn;
+        private DataGridViewImageColumn imgCol;
+        private Button BackColorChange;
     }
 }

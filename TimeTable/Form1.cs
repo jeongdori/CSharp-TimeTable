@@ -45,6 +45,7 @@ namespace TimeTable
                 {
 
                     var newValue = new System.Windows.Forms.TextBox() { Text = message };
+                    var backColor = new System.Windows.Forms.Button() { Text = "색변경" };
                     var LoadImage = new System.Windows.Forms.Button() { Text = "이미지" };
                     var okButton = new System.Windows.Forms.Button() { Text = "확인" };
                     var cancelButton = new System.Windows.Forms.Button() { Text = "취소" };
@@ -55,18 +56,30 @@ namespace TimeTable
                     form.Location = new System.Drawing.Point(clickPoint.X + 50, clickPoint.Y + 50);
                     newValue.Location = new System.Drawing.Point(10, 10);
                     newValue.Size = new Size(100, 23);
-                    LoadImage.Location = new System.Drawing.Point(30, 70);
-                    LoadImage.Size = new Size(75, 23);
-                    okButton.Location = new System.Drawing.Point(120, 70);
-                    okButton.Size = new Size(75, 23);
+                    backColor.Location = new System.Drawing.Point(20, 70);
+                    backColor.Size = new Size(55, 23);
+                    LoadImage.Location = new System.Drawing.Point(80, 70);
+                    LoadImage.Size = new Size(55, 23);
+                    okButton.Location = new System.Drawing.Point(140, 70);
+                    okButton.Size = new Size(55, 23);
                     cancelButton.Location = new System.Drawing.Point(200, 70);
-                    cancelButton.Size = new Size(75, 23);
+                    cancelButton.Size = new Size(55, 23);
                     form.Size = new Size(300, 150);
+
+
+                    backColor.Click += (s, ev) =>
+                    {
+                        DataGridViewColor dataGridViewColor = new DataGridViewColor(dataGridView1);
+                        dataGridViewColor.CellColorChange(clickedCell);
+
+                        form.Close();
+                    };
+
 
                     LoadImage.Click += (s, ev) =>
                     {
                         ImageInsert imageinsert = new ImageInsert(dataGridView1);
-                        imageinsert.LoadImage(clickedCell, e);
+                        imageinsert.LoadImage(clickedCell);
 
                         form.Close();
                     };
@@ -89,11 +102,12 @@ namespace TimeTable
                         form.Close();
                     };
 
-
+                    
                     form.Controls.Add(newValue);
                     form.Controls.Add(okButton);
                     form.Controls.Add(cancelButton);
                     form.Controls.Add(LoadImage);
+                    form.Controls.Add(backColor);
 
 
                     form.ShowDialog();
@@ -141,11 +155,19 @@ namespace TimeTable
             printer.Print();
 
         }
-
+        //DB 데이터 불러오기
         private void DBConnClick(object sender, EventArgs e)
         {
             MySQLConn mySQLConn = new MySQLConn(dataGridView1);
             mySQLConn.ShowMySQL();
         }
+
+        private void BackColorChangeClick(object sender, EventArgs e)
+        {
+            DataGridViewColor dataGridViewColor = new DataGridViewColor(dataGridView1);
+            dataGridViewColor.BackColorChange();
+
+        }
+
     }
 }
