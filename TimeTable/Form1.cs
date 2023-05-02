@@ -102,7 +102,7 @@ namespace TimeTable
                         form.Close();
                     };
 
-                    
+
                     form.Controls.Add(newValue);
                     form.Controls.Add(okButton);
                     form.Controls.Add(cancelButton);
@@ -158,7 +158,7 @@ namespace TimeTable
         //DB 데이터 불러오기
         private void DBConnClick(object sender, EventArgs e)
         {
-            MySQLConn mySQLConn = new MySQLConn(dataGridView1);
+            MySQLConn mySQLConn = new MySQLConn(dataGridView1, DBaddress.Text, DBname.Text, DBid.Text, DBpw.Text);
             mySQLConn.ShowMySQL();
         }
 
@@ -168,6 +168,7 @@ namespace TimeTable
             dataGridViewColor.BackColorChange();
 
         }
+
 
     }
 }
