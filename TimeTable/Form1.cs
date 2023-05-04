@@ -15,8 +15,8 @@ namespace TimeTable
 {
     public partial class Form1 : Form
     {
-        //DataSet dataSet = new DataSet();
-        string[] fileimpor;
+        //load한 파일정보
+        string[]? fileimpor;
 
         public Form1()
         {
@@ -129,15 +129,21 @@ namespace TimeTable
         //저장
         private void ExcelSaveButtonClick(object sender, EventArgs e)
         {
-            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
-            excelClass.SaveExcelFile(fileimpor[0]);
+            if (fileimpor != null)
+            {
+                DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+                excelClass.SaveExcelFile(fileimpor[0]);
+            }
         }
 
         //새로 저장
         private void ExcelSaveAsButtonClick(object sender, EventArgs e)
         {
-            DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
-            excelClass.ExportToExcelFor(fileimpor[1]);
+            if (fileimpor != null)
+            {
+                DataGridViewExcel excelClass = new DataGridViewExcel(dataGridView1);
+                excelClass.ExportToExcelFor(fileimpor[1]);
+            }
 
         }
 

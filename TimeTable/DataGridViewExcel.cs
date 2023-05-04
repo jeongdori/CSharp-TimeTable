@@ -75,32 +75,33 @@ namespace TimeTable
         //수정 내용 로드한 파일에 그대로 저장
         public void SaveExcelFile(string fileName)
         {
-            Excel.Application excelApp = new Excel.Application();
-            Excel.Workbook workbook = excelApp.Workbooks.Open(fileName);
-            Excel.Worksheet worksheet = workbook.Sheets[1];
+                Excel.Application excelApp = new Excel.Application();
+                Excel.Workbook workbook = excelApp.Workbooks.Open(fileName);
+                Excel.Worksheet worksheet = workbook.Sheets[1];
 
-            for (int row = 0; row < dataGridView1.Rows.Count; row++)
-            {
-                for (int col = 0; col < dataGridView1.Columns.Count; col++)
-                {
+               for (int row = 0; row < dataGridView1.Rows.Count; row++)
+               {
+                   for (int col = 0; col < dataGridView1.Columns.Count; col++)
+                   {
+    
+                       worksheet.Cells[row + 2, col + 1] = dataGridView1.Rows[row].Cells[col].Value.ToString();
+    
+                   }
+               }
 
-                    worksheet.Cells[row + 2, col + 1] = dataGridView1.Rows[row].Cells[col].Value.ToString();
+               workbook.Save();
+               workbook.Close();
+               excelApp.Quit();
 
-                }
-            }
+               //함수를 실행할 때마다 백그라운드 프로세스에 계속 엑셀이 추가됨
+               //해결방안 : COM 객체 해제, 가비지 콜렉터
 
-            workbook.Save();
-            workbook.Close();
-            excelApp.Quit();
+               Marshal.ReleaseComObject(worksheet);
+               Marshal.ReleaseComObject(workbook);
+               Marshal.ReleaseComObject(excelApp);
 
-            //함수를 실행할 때마다 백그라운드 프로세스에 계속 엑셀이 추가됨
-            //해결방안 : COM 객체 해제, 가비지 콜렉터
-            
-            Marshal.ReleaseComObject(worksheet);
-            Marshal.ReleaseComObject(workbook);
-            Marshal.ReleaseComObject(excelApp);
+               GC.Collect();
 
-            GC.Collect();
         }
 
 
