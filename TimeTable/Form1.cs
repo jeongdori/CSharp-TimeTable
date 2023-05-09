@@ -175,6 +175,10 @@ namespace TimeTable
 
         }
 
-
+        private void SaturdayViewClick(object sender, EventArgs e)
+        {
+            Dataview dataview = new Dataview(dataGridView1);
+            dataview.SaturdayView();
+        }
     }
 }
